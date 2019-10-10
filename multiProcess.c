@@ -16,6 +16,11 @@ int  main(void) {
        perror("Child failed to exec ls");
        return 1;
    }
+   if (childpid !=0) {                            /* child code */
+       execl("/bin/pwd", "pwd", NULL);
+       perror("Child failed to exec ls");
+       return 1;
+   }
    if (childpid != wait(NULL)) {                  /* parent code */
        perror("Parent failed to wait due to signal or error");
        return 1;
