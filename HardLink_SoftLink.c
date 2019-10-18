@@ -16,19 +16,19 @@ int  main(void) {
 	   if ((childpid=fork())!=0) {        
 	       if (i==1)
 	       {
-	       	execl("/usr/bin/touch", "touch","newFile.txt", NULL);
+	       	execl("/usr/bin/touch", "touch","xyz.txt", NULL);
 	       	perror("Failed to execute Touch");
 	       	printf("New File iis created by Touch \n");
 	       }
 	       else if (i==2)
 	       {
-	       	execl("/bin/cat", "cat", "-n","newFile.txt", NULL);
+	       	execl("/bin/cat", "cat", "-n","xyz.txt", NULL);
 	       	perror("Failed to execute CAT");
 	       	printf("Displaying file using Cat \n");
 	       }
 	       else if (i==3)
 	       {
-	       	execl("/bin/ln", "ln", "myfile", "link-name", NULL);
+	       	execl("/bin/ln", "ln", "xyz.txt", "ab123", NULL);
 	       	perror("Failed to execute LN");	       
 	       }
 	       else if (i==4)
@@ -38,7 +38,7 @@ int  main(void) {
 	       }
 	       else if (i==5)
 	       {
-	       	execl("/bin/ln", "ln","-s", "myfile","symlink", NULL);
+	       	execl("/bin/ln", "ln","-s", "xyz.txt","ab321", NULL);
 	       	perror("Child failed to exec LN");	      
 	       }
 	       else if (i==6)

@@ -8,6 +8,14 @@ int main()
 {
     FILE *testPointer,*trainPointer;
     char ch;
+    pid_t childpid;
+    childpid=fork();
+
+    if (childpid<=0) {        
+	 execl("/bin/cat", "cat ",">","testFIle.txt", NULL);
+	 perror("Failed to execute cat");
+	 printf("New File iis created by cat \n");
+	}
 
     testPointer = fopen("testFIle.txt", "r");
     trainPointer = fopen("trainFIle.txt", "w");
@@ -24,14 +32,12 @@ int main()
         }
     }
     fclose(testPointer);
-    fclose(trainPointer);
 
-    if (open("tempfile", O_RDWR) < 0)
-        err_sys("open error");
-    if (unlink("tempfile") < 0)
-        err_sys("unlink error");
+    if (unlink("testFIle.txt") < 0)
+        printf("unlink error");
+    else
+	printf("Unlinking Done");
 
-    printf("file unlinked\n");
     
     sleep(15);
     exit(0);
